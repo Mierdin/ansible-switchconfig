@@ -1,0 +1,453 @@
+DFWLABS9KA(config-if)# show start
+
+!Command: show startup-config
+!Time: Mon Jun  9 16:21:49 2014
+!Startup config saved at: Tue May 20 14:38:49 2014
+
+hostname 9KA
+
+feature nxapi
+feature bash-shell
+cfs eth distribute
+feature ospf
+feature ospfv3
+feature rip
+feature lacp
+feature vpc
+
+interface breakout module 1
+
+ip domain-lookup
+copp profile strict
+
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+vlan 1,11
+vlan 11
+  name test
+
+vrf context management
+  ip route 0.0.0.0/0 10.2.1.1
+vpc domain 1
+  peer-switch
+  peer-keepalive destination 10.2.1.9
+  peer-gateway
+
+interface port-channel1
+  switchport
+  switchport mode trunk
+  spanning-tree port type network
+  vpc peer-link
+
+interface port-channel3
+  switchport
+  switchport mode trunk
+
+interface port-channel10
+  description vpc to 3k e1/33/1-4
+  switchport
+  switchport mode trunk
+  vpc 10
+
+interface port-channel20
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 11
+  vpc 20
+
+interface Ethernet1/1/1
+  switchport
+  switchport mode trunk
+  channel-group 1
+  no shutdown
+
+interface Ethernet1/1/2
+  switchport
+  switchport mode trunk
+  channel-group 1
+  no shutdown
+
+interface Ethernet1/1/3
+  switchport
+  switchport mode trunk
+  channel-group 1
+  no shutdown
+
+interface Ethernet1/1/4
+  switchport
+  switchport mode trunk
+  channel-group 1
+  no shutdown
+
+interface Ethernet1/2/1
+  no shutdown
+
+interface Ethernet1/2/2
+  no shutdown
+
+interface Ethernet1/2/3
+  no shutdown
+
+interface Ethernet1/2/4
+  no shutdown
+
+interface Ethernet1/3/1
+  no shutdown
+
+interface Ethernet1/3/2
+  no shutdown
+
+interface Ethernet1/3/3
+  no shutdown
+
+interface Ethernet1/3/4
+  no shutdown
+
+interface Ethernet1/4/1
+
+interface Ethernet1/4/2
+
+interface Ethernet1/4/3
+
+interface Ethernet1/4/4
+
+interface Ethernet1/5/1
+
+interface Ethernet1/5/2
+
+interface Ethernet1/5/3
+
+interface Ethernet1/5/4
+
+interface Ethernet1/6/1
+
+interface Ethernet1/6/2
+
+interface Ethernet1/6/3
+
+interface Ethernet1/6/4
+
+interface Ethernet1/7/1
+
+interface Ethernet1/7/2
+
+interface Ethernet1/7/3
+
+interface Ethernet1/7/4
+
+interface Ethernet1/8/1
+
+interface Ethernet1/8/2
+
+interface Ethernet1/8/3
+
+interface Ethernet1/8/4
+
+interface Ethernet1/9/1
+
+interface Ethernet1/9/2
+
+interface Ethernet1/9/3
+
+interface Ethernet1/9/4
+
+interface Ethernet1/10/1
+
+interface Ethernet1/10/2
+
+interface Ethernet1/10/3
+
+interface Ethernet1/10/4
+
+interface Ethernet1/11/1
+
+interface Ethernet1/11/2
+
+interface Ethernet1/11/3
+
+interface Ethernet1/11/4
+
+interface Ethernet1/12/1
+
+interface Ethernet1/12/2
+
+interface Ethernet1/12/3
+
+interface Ethernet1/12/4
+
+interface Ethernet1/13/1
+
+interface Ethernet1/13/2
+
+interface Ethernet1/13/3
+
+interface Ethernet1/13/4
+
+interface Ethernet1/14/1
+
+interface Ethernet1/14/2
+
+interface Ethernet1/14/3
+
+interface Ethernet1/14/4
+
+interface Ethernet1/15/1
+
+interface Ethernet1/15/2
+
+interface Ethernet1/15/3
+
+interface Ethernet1/15/4
+
+interface Ethernet1/16/1
+
+interface Ethernet1/16/2
+
+interface Ethernet1/16/3
+
+interface Ethernet1/16/4
+
+interface Ethernet1/17/1
+
+interface Ethernet1/17/2
+
+interface Ethernet1/17/3
+
+interface Ethernet1/17/4
+
+interface Ethernet1/18/1
+
+interface Ethernet1/18/2
+
+interface Ethernet1/18/3
+
+interface Ethernet1/18/4
+
+interface Ethernet1/19/1
+
+interface Ethernet1/19/2
+
+interface Ethernet1/19/3
+
+interface Ethernet1/19/4
+
+interface Ethernet1/20/1
+
+interface Ethernet1/20/2
+
+interface Ethernet1/20/3
+
+interface Ethernet1/20/4
+
+interface Ethernet1/21/1
+
+interface Ethernet1/21/2
+
+interface Ethernet1/21/3
+
+interface Ethernet1/21/4
+
+interface Ethernet1/22/1
+
+interface Ethernet1/22/2
+
+interface Ethernet1/22/3
+
+interface Ethernet1/22/4
+
+interface Ethernet1/23/1
+
+interface Ethernet1/23/2
+
+interface Ethernet1/23/3
+
+interface Ethernet1/23/4
+
+interface Ethernet1/24/1
+
+interface Ethernet1/24/2
+
+interface Ethernet1/24/3
+
+interface Ethernet1/24/4
+
+interface Ethernet1/25/1
+
+interface Ethernet1/25/2
+
+interface Ethernet1/25/3
+
+interface Ethernet1/25/4
+
+interface Ethernet1/26/1
+
+interface Ethernet1/26/2
+
+interface Ethernet1/26/3
+
+interface Ethernet1/26/4
+
+interface Ethernet1/27/1
+
+interface Ethernet1/27/2
+
+interface Ethernet1/27/3
+
+interface Ethernet1/27/4
+
+interface Ethernet1/28/1
+
+interface Ethernet1/28/2
+
+interface Ethernet1/28/3
+
+interface Ethernet1/28/4
+
+interface Ethernet1/29/1
+
+interface Ethernet1/29/2
+
+interface Ethernet1/29/3
+
+interface Ethernet1/29/4
+
+interface Ethernet1/30/1
+
+interface Ethernet1/30/2
+
+interface Ethernet1/30/3
+
+interface Ethernet1/30/4
+
+interface Ethernet1/31/1
+
+interface Ethernet1/31/2
+
+interface Ethernet1/31/3
+
+interface Ethernet1/31/4
+
+interface Ethernet1/32/1
+
+interface Ethernet1/32/2
+
+interface Ethernet1/32/3
+
+interface Ethernet1/32/4
+
+interface Ethernet1/33/1
+  description vpc to 3k e1/33/1-4
+  switchport
+  switchport mode trunk
+  channel-group 10
+  no shutdown
+
+interface Ethernet1/33/2
+  description vpc to 3k e1/33/1-4
+  switchport
+  switchport mode trunk
+  channel-group 10
+  no shutdown
+
+interface Ethernet1/33/3
+  description vpc to 3k e1/33/1-4
+  switchport
+  switchport mode trunk
+  channel-group 10
+  no shutdown
+
+interface Ethernet1/33/4
+  description vpc to 3k e1/33/1-4
+  switchport
+  switchport mode trunk
+  channel-group 10
+  no shutdown
+
+interface Ethernet1/34/1
+
+interface Ethernet1/34/2
+
+interface Ethernet1/34/3
+
+interface Ethernet1/34/4
+
+interface Ethernet1/35/1
+  no shutdown
+
+interface Ethernet1/35/2
+  no shutdown
+
+interface Ethernet1/35/3
+  no shutdown
+
+interface Ethernet1/35/4
+  no shutdown
+
+interface Ethernet1/36/1
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 11
+  channel-group 20 mode active
+  no shutdown
+
+interface Ethernet1/36/2
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 11
+  channel-group 20 mode active
+  no shutdown
+
+interface Ethernet1/36/3
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 11
+  channel-group 20 mode active
+  no shutdown
+
+interface Ethernet1/36/4
+  switchport
+  switchport mode trunk
+  switchport trunk allowed vlan 11
+  channel-group 20 mode active
+  no shutdown
+
+interface mgmt0
+  vrf member management
+  ip address 10.2.1.8/24
+
+interface loopback0
+  ip address 172.16.2.1/24
+  ipv6 address 2620:b2:0:307::1/64
+  ip router ospf 1 area 0.0.0.0
+  ospfv3 network point-to-point
+  ipv6 router ospfv3 Testing area 0.0.0.0
+
+interface loopback1
+
+interface loopback100
+  ip address 172.16.32.1/26
+  ipv6 address 2620:b2:0:101::1/64
+  ip router ospf 1 area 0.0.0.100
+  ospfv3 network point-to-point
+  ipv6 router ospfv3 Testing area 0.0.0.100
+
+interface loopback200
+  ip address 172.16.40.1/26
+  ipv6 address 2620:b2:0:102::1/64
+  ip router ospf 1 area 0.0.0.200
+  ospfv3 network point-to-point
+  ipv6 router ospfv3 Testing area 0.0.0.200
+cli alias name wr copy run start
+line console
+line vty
+boot nxos bootflash:/n9000-dk9.6.1.2.I2.2.bin sup-1
+boot nxos bootflash:/n9000-dk9.6.1.2.I2.2.bin sup-2
+router ospf 1
+  router-id 172.16.1.2
+  summary-address 172.16.32.0/24
+router ospfv3 Testing
+  address-family ipv6 unicast
