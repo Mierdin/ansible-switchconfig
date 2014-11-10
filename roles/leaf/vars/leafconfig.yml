@@ -31,8 +31,8 @@ vlans:
         ports: e1/13-20
     70:
         name: Application Servers
-        ports: e1/21-32
+        ports: e1/21-34
     80:
         name: Storage
-        ports: e1/33-40
+        ports: e1/35-40
 
