@@ -1,0 +1,38 @@
+#Template Info for Ansible
+conftemplate: 'roles/leaf/templates/leaftemplate.j2'
+conffile: '~/Code/SwitchConfigs/{{ inventory_hostname }}.txt'
+
+# MISC
+#
+# This section contains various portions of the configuration that don't 
+# deserve their own section. Because they're stupid, that's why.
+misc:
+    mgmtgw: 10.1.1.1
+    snmp:
+        traphost: 10.102.2.100
+    adminpwd: Cisco.com
+
+
+# VLANS
+#
+# Defines the VLANs and their corresponding names/descriptions that should be
+# placed on the switch.
+#
+# Format is a key/value pair, where VLAN ID is the key, and name/description is
+# the corresponding value.
+#
+
+vlans:
+    50: 
+        name: Management
+        ports: e1/5-12
+    60:
+        name: Database Servers
+        ports: e1/13-20
+    70:
+        name: Application Servers
+        ports: e1/21-32
+    80:
+        name: Storage
+        ports: e1/33-40
+

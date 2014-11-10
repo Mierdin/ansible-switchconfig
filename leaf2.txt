@@ -1,0 +1,56 @@
+hostname leaf2
+
+feature nxapi
+feature bash-shell
+cfs eth distribute
+feature lacp
+feature vpc
+feature lldp
+
+username admin password 0 Cisco.com role network-admin
+
+ip domain-lookup
+
+!VLAN Database
+vlan 50
+    name Management
+vlan 60
+    name Database Servers
+vlan 70
+    name Application Servers
+vlan 80
+    name Storage
+
+vrf context management
+  ip route 0.0.0.0/0 10.1.1.1
+
+vrf context myvrf
+port-channel load-balance src-dst ip-l4port
+
+interface port-channel100
+  description To Spine
+  switchport mode trunk
+
+interface Ethernet1/1-4
+  description To Spine
+  switchport mode trunk
+  channel-group 100 mode active
+
+interface e1/5-12
+  description Management
+  switchport mode access
+  switchport access vlan 50
+interface e1/13-20
+  description Database Servers
+  switchport mode access
+  switchport access vlan 60
+interface e1/21-32
+  description Application Servers
+  switchport mode access
+  switchport access vlan 70
+interface e1/33-40
+  description Storage
+  switchport mode access
+  switchport access vlan 80
+
+cli alias name wr copy run start

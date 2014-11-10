@@ -1,0 +1,5 @@
+---
+  - include_vars: leafconfig.yml
+
+  - name: Render template
+    template: src={{ conftemplate }} dest={{ conffile }}

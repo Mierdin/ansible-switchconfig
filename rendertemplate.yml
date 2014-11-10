@@ -1,0 +1,7 @@
+---
+- name: Render and Apply Switch Template for Leaf switches
+  hosts: leaf
+  connection: local
+  gather_facts: no
+  roles:
+     - leaf

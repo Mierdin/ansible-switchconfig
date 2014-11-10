@@ -1,0 +1,42 @@
+hostname {{ inventory_hostname }}
+
+feature nxapi
+feature bash-shell
+cfs eth distribute
+feature lacp
+feature vpc
+feature lldp
+
+username admin password 0 {{ misc.adminpwd }} role network-admin
+
+ip domain-lookup
+
+!VLAN Database
+{% for id, props in vlans|dictsort -%}
+vlan {{ id }}
+    name {{ props.name }}
+{% endfor %}
+
+vrf context management
+  ip route 0.0.0.0/0 {{ misc.mgmtgw }}
+
+vrf context myvrf
+port-channel load-balance src-dst ip-l4port
+
+interface port-channel100
+  description To Spine
+  switchport mode trunk
+
+interface Ethernet1/1-4
+  description To Spine
+  switchport mode trunk
+  channel-group 100 mode active
+
+{% for id, props in vlans|dictsort -%}
+interface {{ props.ports }}
+  description {{ props.name }}
+  switchport mode access
+  switchport access vlan {{ id }}
+{% endfor %}
+
+cli alias name wr copy run start
